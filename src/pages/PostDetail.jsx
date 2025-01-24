@@ -11,11 +11,15 @@ const PostDetail = () => {
     const { id } = useParams();
     const [post, setPost] = useState(null)
 
-    const handlerDeletePost = (id) => {
 
-        axios.delete(`${baseApi}/posts/${id}`)
+    const fetchPosts = () => {
+        axios.get(`${baseApi}/posts`)
             .then(res => {
-                fetchPosts()
+                console.log(res.data)
+                setPosts(res.data)
+            })
+            .catch(error => {
+                console.error('Errore durante il caricamento delle pizze:', error)
             })
     }
 
@@ -28,6 +32,15 @@ const PostDetail = () => {
             .catch(error => {
                 console.error('Errore durante il caricamento delle pizze:', error)
             })
+    }
+
+    const handlerDeletePost = (id) => {
+
+        axios.delete(`${baseApi}/posts/${id}`)
+            .then(res => {
+                fetchPosts()
+            })
+        navigate(-1)
     }
 
     useEffect(() => {
