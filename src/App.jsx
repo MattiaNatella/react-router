@@ -16,6 +16,7 @@ function App() {
           <Route path="/" Component={HomePage} />
           <Route path="/chi-siamo" Component={AboutUs} />
           <Route path="/posts" Component={PostsList} />
+          {/* <Route path="/dettaglio-post/:id" Component={PostDetail} /> */}
         </Route>
       </Routes>
     </BrowserRouter>

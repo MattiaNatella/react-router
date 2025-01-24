@@ -11,7 +11,7 @@ const MainNav = () => {
                 <NavLink to="/chi-siamo" className="nav-link" aria-current="page" href="#">Chi Siamo</NavLink>
             </li>
             <li className="nav-item">
-                <NavLink to="/posts" className="nav-link" aria-current="page" href="#">Posts</NavLink>
+                <NavLink to="/posts" className="nav-link" aria-current="page" href="#">Lista posts</NavLink>
             </li>
         </ul>
     )

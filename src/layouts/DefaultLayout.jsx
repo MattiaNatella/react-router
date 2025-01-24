@@ -8,7 +8,9 @@ const DefaultLayout = () => {
                 <MainNav />
             </header>
             <main>
-                <Outlet />
+                <div className="container my-5">
+                    <Outlet />
+                </div>
             </main>
         </>
     )

@@ -1,8 +1,39 @@
-import React from 'react'
+import { useState, useEffect } from "react"
+import axios from "axios"
+import { Link } from "react-router-dom"
+
+
+
 
 const PostsList = () => {
+
+    const baseApi = 'http://localhost:3000'
+    const [posts, setPosts] = useState([])
+
+    const fetchPosts = () => {
+        axios.get(`${baseApi}/posts`)
+            .then(res => {
+                console.log(res.data)
+                setPosts(res.data)
+            })
+            .catch(error => {
+                console.error('Errore durante il caricamento delle pizze:', error)
+            })
+    }
+
+    useEffect(() => {
+        fetchPosts()
+    }, [])
+
     return (
-        <h1 className="container d-flex justify-content-center border border-warning border-4 bg-danger rounded my-5">SONO LA PAGINA DEI POSTS</h1>
+        <ul className="list-group ">
+            {posts.map(post => (
+                <>
+                    <li key={post.id} className="list-group-item d-flex justify-content-between">{post.title} <Link to={`/dettaglio-post/${post.id}`} className="btn btn-info">Mostra dettagli</Link></li>
+
+                </>
+            ))}
+        </ul>
     )
 }
 
