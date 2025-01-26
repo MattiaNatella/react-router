@@ -10,23 +10,21 @@ const PostDetail = () => {
     const navigate = useNavigate();
     const { id } = useParams();
     const [post, setPost] = useState(null)
-
+    const [length, setLength] = useState(0)
 
     const fetchPosts = () => {
         axios.get(`${baseApi}/posts`)
             .then(res => {
-                console.log(res.data)
-                setPosts(res.data)
+                setLength(res.data.length);
             })
             .catch(error => {
-                console.error('Errore durante il caricamento delle pizze:', error)
-            })
-    }
+                console.error('Errore durante il caricamento dei post:', error);
+            });
+    };
 
     const fetchPost = () => {
         axios.get(`${baseApi}/posts/${id}`)
             .then(res => {
-                console.log(res.data)
                 setPost(res.data)
             })
             .catch(error => {
@@ -46,6 +44,7 @@ const PostDetail = () => {
     useEffect(() => {
 
         fetchPost()
+        fetchPosts()
 
     }, [id])
 
@@ -58,7 +57,11 @@ const PostDetail = () => {
             ) : ""}
 
             {post ? (<PostCard post={post} onDelete={handlerDeletePost} />) : (<h2>Post in caricamento</h2>)}
-            <button type="button" className="btn btn-secondary btn-lg p-1 mt-2" onClick={() => navigate(`/dettaglio-post/${id + 1}`)}>Post Successivo</button>
+
+            {parseInt(id) + 1 > length ? "" : (
+                console.log(parseInt(length)),
+                <button type="button" className="btn btn-secondary btn-lg p-1 mt-2" onClick={() => navigate(`/dettaglio-post/${parseInt(id) + 1}`)}>Post successivo</button>
+            )}
 
         </div >
 
