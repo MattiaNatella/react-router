@@ -47,12 +47,21 @@ const PostDetail = () => {
 
         fetchPost()
 
-    }, [])
+    }, [id])
 
     return (
         <div className='d-flex justify-content-center'>
+
+
+            {id - 1 > 0 ? (
+                <button type="button" className="btn btn-secondary btn-lg p-1 mt-2" onClick={() => navigate(`/dettaglio-post/${id - 1}`)}>Post precedente</button>
+            ) : ""}
+
             {post ? (<PostCard post={post} onDelete={handlerDeletePost} />) : (<h2>Post in caricamento</h2>)}
-        </div>
+            <button type="button" className="btn btn-secondary btn-lg p-1 mt-2" onClick={() => navigate(`/dettaglio-post/${id + 1}`)}>Post Successivo</button>
+
+        </div >
+
     )
 }
 
