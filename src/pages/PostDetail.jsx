@@ -49,22 +49,24 @@ const PostDetail = () => {
     }, [id])
 
     return (
-        <div className='d-flex justify-content-center'>
 
-
+        <div className="d-flex justify-content-center">
             {id - 1 > 0 ? (
-                <button type="button" className="btn btn-secondary btn-lg p-1 mt-2" onClick={() => navigate(`/dettaglio-post/${id - 1}`)}>Post precedente</button>
+                <button type="button" className="align-self-center btn btn-primary move btn-lg p-1 mt-2 me-3" onClick={() => navigate(`/dettaglio-post/${id - 1}`)}><i class="fa-solid fa-angles-left"></i></button>
             ) : ""}
+
 
             {post ? (<PostCard post={post} onDelete={handlerDeletePost} />) : (<h2>Post in caricamento</h2>)}
 
-            {parseInt(id) + 1 > length ? "" : (
-                console.log(parseInt(length)),
-                <button type="button" className="btn btn-secondary btn-lg p-1 mt-2" onClick={() => navigate(`/dettaglio-post/${parseInt(id) + 1}`)}>Post successivo</button>
-            )}
 
-        </div >
+            {
+                parseInt(id) + 1 > length ? "" : (
+                    console.log(parseInt(length)),
+                    <button type="button" className="align-self-center btn btn-primary move btn-lg p-1 mt-2 ms-3" onClick={() => navigate(`/dettaglio-post/${parseInt(id) + 1}`)}><i class="fa-solid fa-angles-right"></i></button>
+                )
+            }
 
+        </div>
     )
 }
 
