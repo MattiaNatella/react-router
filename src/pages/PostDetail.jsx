@@ -38,7 +38,7 @@ const PostDetail = () => {
             .then(res => {
                 fetchPosts()
             })
-        navigate(-1)
+        navigate("/posts")
     }
 
     useEffect(() => {
